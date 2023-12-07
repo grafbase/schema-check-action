@@ -34,7 +34,7 @@ runs:
         fi
 
         if [ ! -s "$SCHEMA_PATH" ]; then
-          echo "The schema path at `$SCHEMA_PATH` is empty or missing."
+          echo "The schema path at $SCHEMA_PATH is empty or missing."
           exit 1
         fi
 
