@@ -1,0 +1,62 @@
+name: Grafbase Schema Check
+author: Grafbase
+description: Run the Grafbase Schema Checks
+branding:
+  icon: activity
+  color: green
+inputs:
+  grafbase_access_token:
+    description: A Grafbase API access token. It can be created from the Grafbase dashboard.
+    required: true
+  project_ref:
+    description: "The account, project and (optional) branch of the schema to check against, in the format expected by the grafbase CLI. Example: tomhoule/test-project@main."
+    required: true
+  schema_path:
+    description: The file path of the schema to check, as GraphQL SDL.
+    required: true
+  subgraph_name:
+    description: The name of the subgraph to check. Only required in federated projects.
+
+
+runs:
+  using: composite
+  steps:
+    - id: validate-args
+      shell: bash
+      env:
+        SCHEMA_PATH: ${{ inputs.schema_path }}
+      run: |
+        : Handle the inputs.
+
+        if [ ! -s "$SCHEMA_PATH" ]; then
+          echo "The schema path at `$SCHEMA_PATH` is empty or missing."
+          exit 1
+        fi
+
+        if [ -z "${{ inputs.grafbase_access_token }}" ]; then
+          echo "The grafbase_access_token input is missing."
+          exit 1
+        fi
+
+        if [ -z "${{ inputs.project_ref }}" ]; then
+          echo "The project_ref input is missing."
+          exit 1
+        fi
+
+    - id: download-cli
+      shell: bash
+      run: |
+        : Install the Grafbase CLI
+        npm i --no-audit --no-fund grafbase
+
+        : Test that the CLI binary works
+        npx grafbase --help > /dev/null 2>&1
+
+    - id: check
+      shell: bash
+      env:
+        SCHEMA_PATH: ${{ inputs.schema_path }}
+        GRAFBASE_ACCESS_TOKEN: ${{ inputs.grafbase_access_token }}
+      run: |
+        : Perform the check
+        npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH
