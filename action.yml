@@ -59,4 +59,11 @@ runs:
         GRAFBASE_ACCESS_TOKEN: ${{ inputs.grafbase_access_token }}
       run: |
         : Perform the check
-        npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH
+
+        if [ -n "${{ inputs.subgraph_name }}" ]; then
+          SUBGRAPH="--subgraph ${{ inputs.subgraph_name }}"
+        else
+          SUBGRAPH=""
+        fi
+
+        npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH $SUBGRAPH
