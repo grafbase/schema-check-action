@@ -24,9 +24,14 @@ runs:
     - id: validate-args
       shell: bash
       env:
-        SCHEMA_PATH: ${{ inputs.schema_path }}
+        SCHEMA_PATH: "${{ inputs.schema_path }}"
       run: |
         : Handle the inputs.
+
+        if [ -z "$SCHEMA_PATH" ]; then
+          echo "The schema_path input is missing."
+          exit 1
+        fi
 
         if [ ! -s "$SCHEMA_PATH" ]; then
           echo "The schema path at `$SCHEMA_PATH` is empty or missing."
