@@ -39,3 +39,7 @@ the schema can be safely published.
 
 For example, if your schema is published on merge to `main`, you would run the
 check against `myaccount/myproject@main` on pull requests to `main`.
+
+## Example repositories
+
+- [Single graph with the Postgres connector](https://github.com/tomhoule/grafbase-schema-check-action-single-graph-example) ([workflow file](https://github.com/tomhoule/grafbase-schema-check-action-single-graph-example/blob/main/.github/workflows/check.yml))
