@@ -18,7 +18,12 @@ Using it can look like this:
 
 - `grafbase_access_token` (required): an access token generated on the Grafbase dashboard.
 - `project_ref` (required): the project and (optional) branch of the graph to check.
-- `schema_path` (required): the file system path to the schema to check (as GraphQL SDL)
+- `schema_path` (required): the file system path to the schema to check (as GraphQL SDL).
+
+   Tip: the easiest way to produce the GraphQL schema for your graph is
+   `grafbase introspect --dev > api.graphql`. You can run that command in a
+   workflow step before the action, and pass `schema_path: api.graphql` to this
+   action.
 - `subgraph_name`: the name of the subgraph to check, in a federated project.
   This should not be provided if the project is a single graph.
 
