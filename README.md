@@ -43,3 +43,4 @@ check against `myaccount/myproject@main` on pull requests to `main`.
 ## Example repositories
 
 - [Single graph with the Postgres connector](https://github.com/tomhoule/grafbase-schema-check-action-single-graph-example) ([workflow file](https://github.com/tomhoule/grafbase-schema-check-action-single-graph-example/blob/main/.github/workflows/check.yml))
+- [Federated graph and subgraphs with the Postgres connector](https://github.com/tomhoule/grafbase-schema-check-action-federated-graph-example) ([workflow file](https://github.com/tomhoule/grafbase-schema-check-action-federated-graph-example/blob/main/.github/workflows/check.yml))
