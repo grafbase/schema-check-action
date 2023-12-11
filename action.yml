@@ -1,4 +1,4 @@
-name: Grafbase Schema Check
+name: Grafbase Schema Check Action
 author: Grafbase
 description: Run the Grafbase Schema Checks
 branding:
