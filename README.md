@@ -6,7 +6,7 @@ standalone graphs before publishing them.
 Using it can look like this:
 
 ```yaml
-- uses: grafbase/schema-check-action@main
+- uses: grafbase/schema-check-action@v1
   with:
     grafbase_access_token: ${{ secrets.GRAFBASE_ACCESS_TOKEN }}
     project_ref: tomhoule/grafbase-single-graph-ci-example@main
