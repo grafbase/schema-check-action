@@ -16,6 +16,8 @@ inputs:
     required: true
   subgraph_name:
     description: The name of the subgraph to check. Only required in federated projects.
+  slack_incoming_webhook_url:
+    description: An optional Slack webhook url to post errors to
 
 
 runs:
@@ -72,3 +74,14 @@ runs:
         fi
 
         npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH $SUBGRAPH
+
+
+    - name: Post check errors to slack
+      id: slack
+      if: inputs.slack_incoming_webhook_url
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        slack-message: "Bears, beets, Battlestar Galactica."
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_incoming_webhook_url }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
