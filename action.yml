@@ -75,13 +75,10 @@ runs:
 
         npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH $SUBGRAPH
 
-
     - name: Post check errors to slack
-      id: slack
-      if: inputs.slack_incoming_webhook_url
+      if: inputs.slack_incoming_webhook_url && failure()
       uses: slackapi/slack-github-action@v1.24.0
       with:
-        slack-message: "Bears, beets, Battlestar Galactica."
+        slack-message: "Composition check errors: Bears, beets, Battlestar Galactica."
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_incoming_webhook_url }}
-        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
