@@ -8,25 +8,25 @@ Using it can look like this:
 ```yaml
 - uses: grafbase/schema-check-action@v1
   with:
-    grafbase_access_token: ${{ secrets.GRAFBASE_ACCESS_TOKEN }}
-    project_ref: tomhoule/grafbase-single-graph-ci-example@main
-    schema_path: ./sdl.graphql
-    subgraph_name: products
+    grafbase-access-token: ${{ secrets.GRAFBASE_ACCESS_TOKEN }}
+    project-ref: tomhoule/grafbase-single-graph-ci-example@main
+    schema-path: ./sdl.graphql
+    subgraph-name: products
 ```
 
 ## Inputs
 
-- `grafbase_access_token` (required): an access token generated on the Grafbase dashboard.
-- `project_ref` (required): the project and (optional) branch of the graph to check.
-- `schema_path` (required): the file system path to the schema to check (as GraphQL SDL).
+- `grafbase-access-token` (required): an access token generated on the Grafbase dashboard.
+- `project-ref` (required): the project and (optional) branch of the graph to check.
+- `schema-path` (required): the file system path to the schema to check (as GraphQL SDL).
 
    Tip: the easiest way to produce the GraphQL schema for your graph is
    `grafbase introspect --dev > api.graphql`. You can run that command in a
-   workflow step before the action, and pass `schema_path: api.graphql` to this
+   workflow step before the action, and pass `schema-path: api.graphql` to this
    action.
-- `subgraph_name`: the name of the subgraph to check, in a federated project.
+- `subgraph-name`: the name of the subgraph to check, in a federated project.
   This should not be provided if the project is a single graph.
-- `slack_incoming_webhook_url` (optional): a Slack [Incoming Webhook] url that
+- `slack-incoming-webhook-url` (optional): a Slack [Incoming Webhook] url that
   will be called with the errors whenever checks fail. See the [official
   tutorial](https://api.slack.com/messaging/webhooks) on how to set up an app
   and a webhook URL.
