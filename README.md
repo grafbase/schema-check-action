@@ -26,7 +26,7 @@ Using it can look like this:
    action.
 - `subgraph-name`: the name of the subgraph to check, in a federated project.
   This should not be provided if the project is a single graph.
-- `slack-incoming-webhook-url` (optional): a Slack [Incoming Webhook] url that
+- `slack-incoming-webhook-url` (optional): a Slack [Incoming Webhook](https://api.slack.com/messaging/webhooks) url that
   will be called with the errors whenever checks fail. See the [official
   tutorial](https://api.slack.com/messaging/webhooks) on how to set up an app
   and a webhook URL.
