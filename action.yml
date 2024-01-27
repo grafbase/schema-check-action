@@ -84,7 +84,7 @@ runs:
 
     - name: Post check errors to slack
       if: inputs.slack-incoming-webhook-url && failure()
-      uses: slackapi/slack-github-action@v1.24.0
+      uses: slackapi/slack-github-action@v1.25.0
       with:
         payload: |
           {
